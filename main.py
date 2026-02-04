@@ -1,4 +1,5 @@
 import discord
+import os
 import random
 import re
 
@@ -87,4 +88,7 @@ intents = discord.Intents.default()
 intents.message_content = True
 
 client = Client(intents=intents)
-client.run('')
+token = os.getenv("DISCORD_TOKEN")
+if not token:
+    raise RuntimeError("Defina a variável de ambiente DISCORD_TOKEN antes de iniciar o bot.")
+client.run(token)
